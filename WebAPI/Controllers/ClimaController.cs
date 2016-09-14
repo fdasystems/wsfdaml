@@ -13,6 +13,16 @@ namespace WebAPI.Controllers
     public class ClimaController : ApiController
     {
         fdasys_tempEntities db = new fdasys_tempEntities();
+
+
+        public class ClimaModel
+        {
+
+            public int dia { get; set; }
+            public string clima { get; set; }
+        }        
+        
+        
         // GET api/<controller>
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public IEnumerable<string> Get()
@@ -22,9 +32,8 @@ namespace WebAPI.Controllers
 
         // GET api/<controller>/5
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public string Get(int id)
+        public ClimaModel Get(int id)
         {
-            string res = null;
 
             var query = db.ufn_GetWeatherDayWS(id).FirstOrDefault();
 
@@ -32,9 +41,11 @@ namespace WebAPI.Controllers
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            
-           res = query.ToString();
-           return res; 
+            ClimaModel cm = new ClimaModel();
+            cm.dia = id;
+            cm.clima = query.ToString();
+
+            return cm; 
         }
 
         // POST api/<controller>

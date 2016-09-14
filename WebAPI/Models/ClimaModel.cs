@@ -8,6 +8,8 @@ namespace WebAPI.Models
 {
     class ClimaModel
     {
+
+        public int dia { get; set; }
         public string clima { get; set; }
     }
 }
