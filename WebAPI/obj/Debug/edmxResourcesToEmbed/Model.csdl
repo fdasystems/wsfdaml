@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="tempModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <ComplexType Name="fn_GetDeterminingSystem_Result">
+    <Property Name="detSystem" Type="Double" />
+    <Property Name="detX" Type="Double" />
+    <Property Name="detY" Type="Double" />
+    <Property Name="detZ" Type="Double" />
+  </ComplexType>
+  <ComplexType Name="fn_GetPosition_Result">
+    <Property Name="PosX" Type="Double" />
+    <Property Name="PosY" Type="Double" />
+  </ComplexType>
+  <ComplexType Name="fn_GetRain_Result">
+    <Property Name="Cod" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Perimeter" Type="Double" />
+  </ComplexType>
+  <ComplexType Name="fn_GetStraightLine_Result">
+    <Property Name="A" Type="Double" />
+    <Property Name="B" Type="Double" />
+    <Property Name="C" Type="Double" />
+  </ComplexType>
+  <ComplexType Name="fn_GetWeatherDay_Result">
+    <Property Name="Cod" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Perimeter" Type="Double" />
+  </ComplexType>
+  <EntityType Name="DayWeather">
+    <Key>
+      <PropertyRef Name="CodWeatherCondition" />
+      <PropertyRef Name="IdPosPlanet1" />
+      <PropertyRef Name="IdPosPlanet2" />
+      <PropertyRef Name="IdPosPlanet3" />
+      <PropertyRef Name="Perimeter" />
+    </Key>
+    <Property Name="CodWeatherCondition" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdPosPlanet1" Type="Int32" Nullable="false" />
+    <Property Name="IdPosPlanet2" Type="Int32" Nullable="false" />
+    <Property Name="IdPosPlanet3" Type="Int32" Nullable="false" />
+    <Property Name="Perimeter" Type="Double" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PosPlanet">
+    <Key>
+      <PropertyRef Name="IdPlanet" />
+      <PropertyRef Name="DayP" />
+    </Key>
+    <Property Name="IdPosPlanet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdPlanet" Type="Int32" Nullable="false" />
+    <Property Name="DayP" Type="Int32" Nullable="false" />
+    <Property Name="PosX" Type="Double" />
+    <Property Name="PosY" Type="Double" />
+  </EntityType>
+  <EntityType Name="WeatherCondition">
+    <Key>
+      <PropertyRef Name="CodWeatherCondition" />
+    </Key>
+    <Property Name="CodWeatherCondition" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Planet">
+    <Key>
+      <PropertyRef Name="IdPlanet" />
+      <PropertyRef Name="Radio" />
+      <PropertyRef Name="AngularVelocity" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="IdPlanet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Radio" Type="Int32" Nullable="false" />
+    <Property Name="AngularVelocity" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="tempEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DayWeather" EntityType="Self.DayWeather" />
+    <EntitySet Name="PosPlanet" EntityType="Self.PosPlanet" />
+    <EntitySet Name="WeatherCondition" EntityType="Self.WeatherCondition" />
+    <EntitySet Name="Planet" EntityType="Self.Planet" />
+    <FunctionImport Name="fn_GetDeterminingSystem" IsComposable="true" ReturnType="Collection(tempModel.fn_GetDeterminingSystem_Result)">
+      <Parameter Name="Planet1posX" Mode="In" Type="Double" />
+      <Parameter Name="Planet1posY" Mode="In" Type="Double" />
+      <Parameter Name="Planet2posX" Mode="In" Type="Double" />
+      <Parameter Name="Planet2posY" Mode="In" Type="Double" />
+      <Parameter Name="Planet3posX" Mode="In" Type="Double" />
+      <Parameter Name="Planet3posY" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="fn_GetPosition" IsComposable="true" ReturnType="Collection(tempModel.fn_GetPosition_Result)">
+      <Parameter Name="IdPlanet" Mode="In" Type="Int32" />
+      <Parameter Name="DayP" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="fn_GetRain" IsComposable="true" ReturnType="Collection(tempModel.fn_GetRain_Result)">
+      <Parameter Name="Planet1posX" Mode="In" Type="Double" />
+      <Parameter Name="Planet1posY" Mode="In" Type="Double" />
+      <Parameter Name="Planet2posX" Mode="In" Type="Double" />
+      <Parameter Name="Planet2posY" Mode="In" Type="Double" />
+      <Parameter Name="Planet3posX" Mode="In" Type="Double" />
+      <Parameter Name="Planet3posY" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="fn_GetStraightLine" IsComposable="true" ReturnType="Collection(tempModel.fn_GetStraightLine_Result)">
+      <Parameter Name="Planet1posX" Mode="In" Type="Double" />
+      <Parameter Name="Planet1posY" Mode="In" Type="Double" />
+      <Parameter Name="Planet2posX" Mode="In" Type="Double" />
+      <Parameter Name="Planet2posY" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="fn_GetWeatherDay" IsComposable="true" ReturnType="Collection(tempModel.fn_GetWeatherDay_Result)">
+      <Parameter Name="DayP" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_FillAllDays">
+      <Parameter Name="resultP" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_FillDay">
+      <Parameter Name="IdPlanet" Mode="In" Type="Int32" />
+      <Parameter Name="DayP" Mode="In" Type="Int32" />
+      <Parameter Name="resultPSetDay" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_SetDayPos">
+      <Parameter Name="IdPlanet" Mode="In" Type="Int32" />
+      <Parameter Name="DayP" Mode="In" Type="Int32" />
+      <Parameter Name="PosX" Mode="In" Type="Double" />
+      <Parameter Name="PosY" Mode="In" Type="Double" />
+      <Parameter Name="resultP" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_SetWeatherDay">
+      <Parameter Name="DayP" Mode="In" Type="Int32" />
+      <Parameter Name="IdPlanet1" Mode="In" Type="Int32" />
+      <Parameter Name="IdPlanet2" Mode="In" Type="Int32" />
+      <Parameter Name="IdPlanet3" Mode="In" Type="Int32" />
+      <Parameter Name="Cod" Mode="In" Type="String" />
+      <Parameter Name="Perimeter" Mode="In" Type="Double" />
+      <Parameter Name="resultP" Mode="InOut" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

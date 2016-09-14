@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="fdasys_tempModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DayWeather">
+          <Key>
+            <PropertyRef Name="CodWeatherCondition" />
+            <PropertyRef Name="IdPosPlanet1" />
+            <PropertyRef Name="IdPosPlanet2" />
+            <PropertyRef Name="IdPosPlanet3" />
+            <PropertyRef Name="Perimeter" />
+          </Key>
+          <Property Name="CodWeatherCondition" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="IdPosPlanet1" Type="int" Nullable="false" />
+          <Property Name="IdPosPlanet2" Type="int" Nullable="false" />
+          <Property Name="IdPosPlanet3" Type="int" Nullable="false" />
+          <Property Name="Perimeter" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Planet">
+          <Key>
+            <PropertyRef Name="IdPlanet" />
+          </Key>
+          <Property Name="IdPlanet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Radio" Type="int" Nullable="false" />
+          <Property Name="AngularVelocity" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PosPlanet">
+          <Key>
+            <PropertyRef Name="IdPlanet" />
+            <PropertyRef Name="DayP" />
+          </Key>
+          <Property Name="IdPosPlanet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPlanet" Type="int" Nullable="false" />
+          <Property Name="DayP" Type="int" Nullable="false" />
+          <Property Name="PosX" Type="float" />
+          <Property Name="PosY" Type="float" />
+        </EntityType>
+        <EntityType Name="WeatherCondition">
+          <Key>
+            <PropertyRef Name="CodWeatherCondition" />
+          </Key>
+          <Property Name="CodWeatherCondition" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_PosPlanet_Planet">
+          <End Role="Planet" Type="Self.Planet" Multiplicity="1" />
+          <End Role="PosPlanet" Type="Self.PosPlanet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planet">
+              <PropertyRef Name="IdPlanet" />
+            </Principal>
+            <Dependent Role="PosPlanet">
+              <PropertyRef Name="IdPlanet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_GetDetermining" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+          <Parameter Name="p1X" Type="float" Mode="In" />
+          <Parameter Name="p1Y" Type="float" Mode="In" />
+          <Parameter Name="p2X" Type="float" Mode="In" />
+          <Parameter Name="p2Y" Type="float" Mode="In" />
+          <Parameter Name="p3X" Type="float" Mode="In" />
+          <Parameter Name="p3Y" Type="float" Mode="In" />
+          <Parameter Name="p4" Type="float" Mode="In" />
+        </Function>
+        <Function Name="fn_GetDeterminingSystem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Planet1posX" Type="float" Mode="In" />
+          <Parameter Name="Planet1posY" Type="float" Mode="In" />
+          <Parameter Name="Planet2posX" Type="float" Mode="In" />
+          <Parameter Name="Planet2posY" Type="float" Mode="In" />
+          <Parameter Name="Planet3posX" Type="float" Mode="In" />
+          <Parameter Name="Planet3posY" Type="float" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="detSystem" Type="float" />
+                <Property Name="detX" Type="float" />
+                <Property Name="detY" Type="float" />
+                <Property Name="detZ" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_GetDroughtOrOptimus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="Planet1posX" Type="float" Mode="In" />
+          <Parameter Name="Planet1posY" Type="float" Mode="In" />
+          <Parameter Name="Planet2posX" Type="float" Mode="In" />
+          <Parameter Name="Planet2posY" Type="float" Mode="In" />
+          <Parameter Name="Planet3posX" Type="float" Mode="In" />
+          <Parameter Name="Planet3posY" Type="float" Mode="In" />
+        </Function>
+        <Function Name="fn_GetPerimeter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+          <Parameter Name="Planet1posX" Type="float" Mode="In" />
+          <Parameter Name="Planet1posY" Type="float" Mode="In" />
+          <Parameter Name="Planet2posX" Type="float" Mode="In" />
+          <Parameter Name="Planet2posY" Type="float" Mode="In" />
+          <Parameter Name="Planet3posX" Type="float" Mode="In" />
+          <Parameter Name="Planet3posY" Type="float" Mode="In" />
+        </Function>
+        <Function Name="fn_GetPosition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPlanet" Type="int" Mode="In" />
+          <Parameter Name="DayP" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="PosX" Type="float" />
+                <Property Name="PosY" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_GetRain" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Planet1posX" Type="float" Mode="In" />
+          <Parameter Name="Planet1posY" Type="float" Mode="In" />
+          <Parameter Name="Planet2posX" Type="float" Mode="In" />
+          <Parameter Name="Planet2posY" Type="float" Mode="In" />
+          <Parameter Name="Planet3posX" Type="float" Mode="In" />
+          <Parameter Name="Planet3posY" Type="float" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Cod" Type="varchar" MaxLength="3" />
+                <Property Name="Perimeter" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_GetStraightLine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Planet1posX" Type="float" Mode="In" />
+          <Parameter Name="Planet1posY" Type="float" Mode="In" />
+          <Parameter Name="Planet2posX" Type="float" Mode="In" />
+          <Parameter Name="Planet2posY" Type="float" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="A" Type="float" />
+                <Property Name="B" Type="float" />
+                <Property Name="C" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_GetWeatherDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DayP" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Cod" Type="varchar" MaxLength="3" />
+                <Property Name="Perimeter" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_GetWeatherDayWS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="DayP" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fn_IsInSameLine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+          <Parameter Name="A" Type="float" Mode="In" />
+          <Parameter Name="B" Type="float" Mode="In" />
+          <Parameter Name="C" Type="float" Mode="In" />
+          <Parameter Name="PlanetPosX" Type="float" Mode="In" />
+          <Parameter Name="PlanetPosY" Type="float" Mode="In" />
+        </Function>
+        <Function Name="fn_IsSunContained" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+          <Parameter Name="Planet1posX" Type="float" Mode="In" />
+          <Parameter Name="Planet1posY" Type="float" Mode="In" />
+          <Parameter Name="Planet2posX" Type="float" Mode="In" />
+          <Parameter Name="Planet2posY" Type="float" Mode="In" />
+          <Parameter Name="Planet3posX" Type="float" Mode="In" />
+          <Parameter Name="Planet3posY" Type="float" Mode="In" />
+        </Function>
+        <Function Name="fn_VerifyLine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+          <Parameter Name="Planet1posX" Type="float" Mode="In" />
+          <Parameter Name="Planet1posY" Type="float" Mode="In" />
+          <Parameter Name="Planet2posX" Type="float" Mode="In" />
+          <Parameter Name="Planet2posY" Type="float" Mode="In" />
+          <Parameter Name="Planet3posX" Type="float" Mode="In" />
+          <Parameter Name="Planet3posY" Type="float" Mode="In" />
+        </Function>
+        <Function Name="ufn_GetWeatherDayWS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DayP" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Description" Type="varchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="usp_FillAllDays" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="resultP" Type="varchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="usp_FillDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPlanet" Type="int" Mode="In" />
+          <Parameter Name="DayP" Type="int" Mode="In" />
+          <Parameter Name="resultPSetDay" Type="varchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="usp_SetDayPos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPlanet" Type="int" Mode="In" />
+          <Parameter Name="DayP" Type="int" Mode="In" />
+          <Parameter Name="PosX" Type="float" Mode="In" />
+          <Parameter Name="PosY" Type="float" Mode="In" />
+          <Parameter Name="resultP" Type="varchar(max)" Mode="InOut" />
+        </Function>
+        <Function Name="usp_SetWeatherDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DayP" Type="int" Mode="In" />
+          <Parameter Name="IdPlanet1" Type="int" Mode="In" />
+          <Parameter Name="IdPlanet2" Type="int" Mode="In" />
+          <Parameter Name="IdPlanet3" Type="int" Mode="In" />
+          <Parameter Name="Cod" Type="varchar" Mode="In" />
+          <Parameter Name="Perimeter" Type="float" Mode="In" />
+          <Parameter Name="resultP" Type="varchar(max)" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="fdasys_tempModelStoreContainer">
+          <EntitySet Name="DayWeather" EntityType="Self.DayWeather" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Planet" EntityType="Self.Planet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PosPlanet" EntityType="Self.PosPlanet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeatherCondition" EntityType="Self.WeatherCondition" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PosPlanet_Planet" Association="Self.FK_PosPlanet_Planet">
+            <End Role="Planet" EntitySet="Planet" />
+            <End Role="PosPlanet" EntitySet="PosPlanet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="fdasys_tempModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="fn_GetDeterminingSystem_Result">
+          <Property Name="detSystem" Type="Double" />
+          <Property Name="detX" Type="Double" />
+          <Property Name="detY" Type="Double" />
+          <Property Name="detZ" Type="Double" />
+        </ComplexType>
+        <ComplexType Name="fn_GetPosition_Result">
+          <Property Name="PosX" Type="Double" />
+          <Property Name="PosY" Type="Double" />
+        </ComplexType>
+        <ComplexType Name="fn_GetRain_Result">
+          <Property Name="Cod" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Perimeter" Type="Double" />
+        </ComplexType>
+        <ComplexType Name="fn_GetStraightLine_Result">
+          <Property Name="A" Type="Double" />
+          <Property Name="B" Type="Double" />
+          <Property Name="C" Type="Double" />
+        </ComplexType>
+        <ComplexType Name="fn_GetWeatherDay_Result">
+          <Property Name="Cod" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="Perimeter" Type="Double" />
+        </ComplexType>
+        <EntityType Name="DayWeather">
+          <Key>
+            <PropertyRef Name="CodWeatherCondition" />
+            <PropertyRef Name="IdPosPlanet1" />
+            <PropertyRef Name="IdPosPlanet2" />
+            <PropertyRef Name="IdPosPlanet3" />
+            <PropertyRef Name="Perimeter" />
+          </Key>
+          <Property Name="CodWeatherCondition" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdPosPlanet1" Type="Int32" Nullable="false" />
+          <Property Name="IdPosPlanet2" Type="Int32" Nullable="false" />
+          <Property Name="IdPosPlanet3" Type="Int32" Nullable="false" />
+          <Property Name="Perimeter" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PosPlanet">
+          <Key>
+            <PropertyRef Name="IdPlanet" />
+            <PropertyRef Name="DayP" />
+          </Key>
+          <Property Name="IdPosPlanet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPlanet" Type="Int32" Nullable="false" />
+          <Property Name="DayP" Type="Int32" Nullable="false" />
+          <Property Name="PosX" Type="Double" />
+          <Property Name="PosY" Type="Double" />
+          <NavigationProperty Name="Planet" Relationship="fdasys_tempModel.FK_PosPlanet_Planet" FromRole="PosPlanet" ToRole="Planet" />
+        </EntityType>
+        <EntityType Name="WeatherCondition">
+          <Key>
+            <PropertyRef Name="CodWeatherCondition" />
+          </Key>
+          <Property Name="CodWeatherCondition" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="fdasys_tempEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DayWeather" EntityType="Self.DayWeather" />
+          <EntitySet Name="PosPlanet" EntityType="Self.PosPlanet" />
+          <EntitySet Name="WeatherCondition" EntityType="Self.WeatherCondition" />
+          <FunctionImport Name="fn_GetDeterminingSystem" ReturnType="Collection(fdasys_tempModel.fn_GetDeterminingSystem_Result)" IsComposable="true">
+            <Parameter Name="Planet1posX" Mode="In" Type="Double" />
+            <Parameter Name="Planet1posY" Mode="In" Type="Double" />
+            <Parameter Name="Planet2posX" Mode="In" Type="Double" />
+            <Parameter Name="Planet2posY" Mode="In" Type="Double" />
+            <Parameter Name="Planet3posX" Mode="In" Type="Double" />
+            <Parameter Name="Planet3posY" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="fn_GetPosition" ReturnType="Collection(fdasys_tempModel.fn_GetPosition_Result)" IsComposable="true">
+            <Parameter Name="IdPlanet" Mode="In" Type="Int32" />
+            <Parameter Name="DayP" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fn_GetRain" ReturnType="Collection(fdasys_tempModel.fn_GetRain_Result)" IsComposable="true">
+            <Parameter Name="Planet1posX" Mode="In" Type="Double" />
+            <Parameter Name="Planet1posY" Mode="In" Type="Double" />
+            <Parameter Name="Planet2posX" Mode="In" Type="Double" />
+            <Parameter Name="Planet2posY" Mode="In" Type="Double" />
+            <Parameter Name="Planet3posX" Mode="In" Type="Double" />
+            <Parameter Name="Planet3posY" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="fn_GetStraightLine" ReturnType="Collection(fdasys_tempModel.fn_GetStraightLine_Result)" IsComposable="true">
+            <Parameter Name="Planet1posX" Mode="In" Type="Double" />
+            <Parameter Name="Planet1posY" Mode="In" Type="Double" />
+            <Parameter Name="Planet2posX" Mode="In" Type="Double" />
+            <Parameter Name="Planet2posY" Mode="In" Type="Double" />
+          </FunctionImport>
+          <FunctionImport Name="fn_GetWeatherDay" ReturnType="Collection(fdasys_tempModel.fn_GetWeatherDay_Result)" IsComposable="true">
+          <Parameter Name="DayP" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_FillAllDays">
+          <Parameter Name="resultP" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_FillDay">
+            <Parameter Name="IdPlanet" Mode="In" Type="Int32" />
+            <Parameter Name="DayP" Mode="In" Type="Int32" />
+            <Parameter Name="resultPSetDay" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_SetDayPos">
+            <Parameter Name="IdPlanet" Mode="In" Type="Int32" />
+            <Parameter Name="DayP" Mode="In" Type="Int32" />
+            <Parameter Name="PosX" Mode="In" Type="Double" />
+            <Parameter Name="PosY" Mode="In" Type="Double" />
+            <Parameter Name="resultP" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_SetWeatherDay">
+            <Parameter Name="DayP" Mode="In" Type="Int32" />
+            <Parameter Name="IdPlanet1" Mode="In" Type="Int32" />
+            <Parameter Name="IdPlanet2" Mode="In" Type="Int32" />
+            <Parameter Name="IdPlanet3" Mode="In" Type="Int32" />
+            <Parameter Name="Cod" Mode="In" Type="String" />
+            <Parameter Name="Perimeter" Mode="In" Type="Double" />
+            <Parameter Name="resultP" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Planet" EntityType="fdasys_tempModel.Planet" />
+          <AssociationSet Name="FK_PosPlanet_Planet" Association="fdasys_tempModel.FK_PosPlanet_Planet">
+            <End Role="Planet" EntitySet="Planet" />
+            <End Role="PosPlanet" EntitySet="PosPlanet" />
+          </AssociationSet>
+          <FunctionImport Name="ufn_GetWeatherDayWS" IsComposable="true" ReturnType="Collection(String)">
+            <Parameter Name="DayP" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Planet">
+          <Key>
+            <PropertyRef Name="IdPlanet" />
+          </Key>
+          <Property Name="IdPlanet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Radio" Type="Int32" Nullable="false" />
+          <Property Name="AngularVelocity" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PosPlanet" Relationship="fdasys_tempModel.FK_PosPlanet_Planet" FromRole="Planet" ToRole="PosPlanet" />
+        </EntityType>
+        <Association Name="FK_PosPlanet_Planet">
+          <End Type="fdasys_tempModel.Planet" Role="Planet" Multiplicity="1" />
+          <End Type="fdasys_tempModel.PosPlanet" Role="PosPlanet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Planet">
+              <PropertyRef Name="IdPlanet" />
+            </Principal>
+            <Dependent Role="PosPlanet">
+              <PropertyRef Name="IdPlanet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="fdasys_tempModelStoreContainer" CdmEntityContainer="fdasys_tempEntities">
+          <EntitySetMapping Name="DayWeather">
+            <EntityTypeMapping TypeName="fdasys_tempModel.DayWeather">
+              <MappingFragment StoreEntitySet="DayWeather">
+                <ScalarProperty Name="CodWeatherCondition" ColumnName="CodWeatherCondition" />
+                <ScalarProperty Name="IdPosPlanet1" ColumnName="IdPosPlanet1" />
+                <ScalarProperty Name="IdPosPlanet2" ColumnName="IdPosPlanet2" />
+                <ScalarProperty Name="IdPosPlanet3" ColumnName="IdPosPlanet3" />
+                <ScalarProperty Name="Perimeter" ColumnName="Perimeter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PosPlanet">
+            <EntityTypeMapping TypeName="fdasys_tempModel.PosPlanet">
+              <MappingFragment StoreEntitySet="PosPlanet">
+                <ScalarProperty Name="IdPosPlanet" ColumnName="IdPosPlanet" />
+                <ScalarProperty Name="IdPlanet" ColumnName="IdPlanet" />
+                <ScalarProperty Name="DayP" ColumnName="DayP" />
+                <ScalarProperty Name="PosX" ColumnName="PosX" />
+                <ScalarProperty Name="PosY" ColumnName="PosY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeatherCondition">
+            <EntityTypeMapping TypeName="fdasys_tempModel.WeatherCondition">
+              <MappingFragment StoreEntitySet="WeatherCondition">
+                <ScalarProperty Name="CodWeatherCondition" ColumnName="CodWeatherCondition" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionName="fdasys_tempModel.Store.fn_GetDeterminingSystem" FunctionImportName="fn_GetDeterminingSystem">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fdasys_tempModel.fn_GetDeterminingSystem_Result">
+                <ScalarProperty Name="detSystem" ColumnName="detSystem" />
+                <ScalarProperty Name="detX" ColumnName="detX" />
+                <ScalarProperty Name="detY" ColumnName="detY" />
+                <ScalarProperty Name="detZ" ColumnName="detZ" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="fdasys_tempModel.Store.fn_GetPosition" FunctionImportName="fn_GetPosition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fdasys_tempModel.fn_GetPosition_Result">
+                <ScalarProperty Name="PosX" ColumnName="PosX" />
+                <ScalarProperty Name="PosY" ColumnName="PosY" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="fdasys_tempModel.Store.fn_GetRain" FunctionImportName="fn_GetRain">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fdasys_tempModel.fn_GetRain_Result">
+                <ScalarProperty Name="Cod" ColumnName="Cod" />
+                <ScalarProperty Name="Perimeter" ColumnName="Perimeter" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="fdasys_tempModel.Store.fn_GetStraightLine" FunctionImportName="fn_GetStraightLine">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fdasys_tempModel.fn_GetStraightLine_Result">
+                <ScalarProperty Name="A" ColumnName="A" />
+                <ScalarProperty Name="B" ColumnName="B" />
+                <ScalarProperty Name="C" ColumnName="C" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="fdasys_tempModel.Store.fn_GetWeatherDay" FunctionImportName="fn_GetWeatherDay">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="fdasys_tempModel.fn_GetWeatherDay_Result">
+                <ScalarProperty Name="Cod" ColumnName="Cod" />
+                <ScalarProperty Name="Perimeter" ColumnName="Perimeter" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_FillAllDays" FunctionName="fdasys_tempModel.Store.usp_FillAllDays" />
+          <FunctionImportMapping FunctionImportName="usp_FillDay" FunctionName="fdasys_tempModel.Store.usp_FillDay" />
+          <FunctionImportMapping FunctionImportName="usp_SetDayPos" FunctionName="fdasys_tempModel.Store.usp_SetDayPos" />
+          <FunctionImportMapping FunctionImportName="usp_SetWeatherDay" FunctionName="fdasys_tempModel.Store.usp_SetWeatherDay" />
+          <EntitySetMapping Name="Planet">
+            <EntityTypeMapping TypeName="fdasys_tempModel.Planet">
+              <MappingFragment StoreEntitySet="Planet">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AngularVelocity" ColumnName="AngularVelocity" />
+                <ScalarProperty Name="Radio" ColumnName="Radio" />
+                <ScalarProperty Name="IdPlanet" ColumnName="IdPlanet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ufn_GetWeatherDayWS" FunctionName="fdasys_tempModel.Store.ufn_GetWeatherDayWS" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

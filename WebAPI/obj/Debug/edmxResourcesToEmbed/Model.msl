@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="tempModelStoreContainer" CdmEntityContainer="tempEntities">
+    <EntitySetMapping Name="DayWeather">
+      <EntityTypeMapping TypeName="tempModel.DayWeather">
+        <MappingFragment StoreEntitySet="DayWeather">
+          <ScalarProperty Name="CodWeatherCondition" ColumnName="CodWeatherCondition" />
+          <ScalarProperty Name="IdPosPlanet1" ColumnName="IdPosPlanet1" />
+          <ScalarProperty Name="IdPosPlanet2" ColumnName="IdPosPlanet2" />
+          <ScalarProperty Name="IdPosPlanet3" ColumnName="IdPosPlanet3" />
+          <ScalarProperty Name="Perimeter" ColumnName="Perimeter" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PosPlanet">
+      <EntityTypeMapping TypeName="tempModel.PosPlanet">
+        <MappingFragment StoreEntitySet="PosPlanet">
+          <ScalarProperty Name="IdPosPlanet" ColumnName="IdPosPlanet" />
+          <ScalarProperty Name="IdPlanet" ColumnName="IdPlanet" />
+          <ScalarProperty Name="DayP" ColumnName="DayP" />
+          <ScalarProperty Name="PosX" ColumnName="PosX" />
+          <ScalarProperty Name="PosY" ColumnName="PosY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WeatherCondition">
+      <EntityTypeMapping TypeName="tempModel.WeatherCondition">
+        <MappingFragment StoreEntitySet="WeatherCondition">
+          <ScalarProperty Name="CodWeatherCondition" ColumnName="CodWeatherCondition" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Planet">
+      <EntityTypeMapping TypeName="tempModel.Planet">
+        <MappingFragment StoreEntitySet="Planet">
+          <ScalarProperty Name="IdPlanet" ColumnName="IdPlanet" />
+          <ScalarProperty Name="Radio" ColumnName="Radio" />
+          <ScalarProperty Name="AngularVelocity" ColumnName="AngularVelocity" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionName="tempModel.Store.fn_GetDeterminingSystem" FunctionImportName="fn_GetDeterminingSystem">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="tempModel.fn_GetDeterminingSystem_Result">
+          <ScalarProperty Name="detSystem" ColumnName="detSystem" />
+          <ScalarProperty Name="detX" ColumnName="detX" />
+          <ScalarProperty Name="detY" ColumnName="detY" />
+          <ScalarProperty Name="detZ" ColumnName="detZ" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="tempModel.Store.fn_GetPosition" FunctionImportName="fn_GetPosition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="tempModel.fn_GetPosition_Result">
+          <ScalarProperty Name="PosX" ColumnName="PosX" />
+          <ScalarProperty Name="PosY" ColumnName="PosY" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="tempModel.Store.fn_GetRain" FunctionImportName="fn_GetRain">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="tempModel.fn_GetRain_Result">
+          <ScalarProperty Name="Cod" ColumnName="Cod" />
+          <ScalarProperty Name="Perimeter" ColumnName="Perimeter" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="tempModel.Store.fn_GetStraightLine" FunctionImportName="fn_GetStraightLine">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="tempModel.fn_GetStraightLine_Result">
+          <ScalarProperty Name="A" ColumnName="A" />
+          <ScalarProperty Name="B" ColumnName="B" />
+          <ScalarProperty Name="C" ColumnName="C" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionName="tempModel.Store.fn_GetWeatherDay" FunctionImportName="fn_GetWeatherDay">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="tempModel.fn_GetWeatherDay_Result">
+          <ScalarProperty Name="Cod" ColumnName="Cod" />
+          <ScalarProperty Name="Perimeter" ColumnName="Perimeter" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_FillAllDays" FunctionName="tempModel.Store.usp_FillAllDays" />
+    <FunctionImportMapping FunctionImportName="usp_FillDay" FunctionName="tempModel.Store.usp_FillDay" />
+    <FunctionImportMapping FunctionImportName="usp_SetDayPos" FunctionName="tempModel.Store.usp_SetDayPos" />
+    <FunctionImportMapping FunctionImportName="usp_SetWeatherDay" FunctionName="tempModel.Store.usp_SetWeatherDay" />
+  </EntityContainerMapping>
+</Mapping>

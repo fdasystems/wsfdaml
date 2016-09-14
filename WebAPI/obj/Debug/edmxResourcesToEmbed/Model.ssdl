@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="tempModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DayWeather">
+    <Key>
+      <PropertyRef Name="CodWeatherCondition" />
+      <PropertyRef Name="IdPosPlanet1" />
+      <PropertyRef Name="IdPosPlanet2" />
+      <PropertyRef Name="IdPosPlanet3" />
+      <PropertyRef Name="Perimeter" />
+    </Key>
+    <Property Name="CodWeatherCondition" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="IdPosPlanet1" Type="int" Nullable="false" />
+    <Property Name="IdPosPlanet2" Type="int" Nullable="false" />
+    <Property Name="IdPosPlanet3" Type="int" Nullable="false" />
+    <Property Name="Perimeter" Type="float" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'temp.dbo.Planet' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Planet">
+    <Key>
+      <PropertyRef Name="IdPlanet" />
+      <PropertyRef Name="Radio" />
+      <PropertyRef Name="AngularVelocity" />
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="IdPlanet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Radio" Type="int" Nullable="false" />
+    <Property Name="AngularVelocity" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PosPlanet">
+    <Key>
+      <PropertyRef Name="IdPlanet" />
+      <PropertyRef Name="DayP" />
+    </Key>
+    <Property Name="IdPosPlanet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdPlanet" Type="int" Nullable="false" />
+    <Property Name="DayP" Type="int" Nullable="false" />
+    <Property Name="PosX" Type="float" />
+    <Property Name="PosY" Type="float" />
+  </EntityType>
+  <EntityType Name="WeatherCondition">
+    <Key>
+      <PropertyRef Name="CodWeatherCondition" />
+    </Key>
+    <Property Name="CodWeatherCondition" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Function Name="fn_GetDetermining" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+    <Parameter Name="p1X" Type="float" Mode="In" />
+    <Parameter Name="p1Y" Type="float" Mode="In" />
+    <Parameter Name="p2X" Type="float" Mode="In" />
+    <Parameter Name="p2Y" Type="float" Mode="In" />
+    <Parameter Name="p3X" Type="float" Mode="In" />
+    <Parameter Name="p3Y" Type="float" Mode="In" />
+    <Parameter Name="p4" Type="float" Mode="In" />
+  </Function>
+  <Function Name="fn_GetDeterminingSystem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Planet1posX" Type="float" Mode="In" />
+    <Parameter Name="Planet1posY" Type="float" Mode="In" />
+    <Parameter Name="Planet2posX" Type="float" Mode="In" />
+    <Parameter Name="Planet2posY" Type="float" Mode="In" />
+    <Parameter Name="Planet3posX" Type="float" Mode="In" />
+    <Parameter Name="Planet3posY" Type="float" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="detSystem" Type="float" />
+          <Property Name="detX" Type="float" />
+          <Property Name="detY" Type="float" />
+          <Property Name="detZ" Type="float" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_GetDroughtOrOptimus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="Planet1posX" Type="float" Mode="In" />
+    <Parameter Name="Planet1posY" Type="float" Mode="In" />
+    <Parameter Name="Planet2posX" Type="float" Mode="In" />
+    <Parameter Name="Planet2posY" Type="float" Mode="In" />
+    <Parameter Name="Planet3posX" Type="float" Mode="In" />
+    <Parameter Name="Planet3posY" Type="float" Mode="In" />
+  </Function>
+  <Function Name="fn_GetPerimeter" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+    <Parameter Name="Planet1posX" Type="float" Mode="In" />
+    <Parameter Name="Planet1posY" Type="float" Mode="In" />
+    <Parameter Name="Planet2posX" Type="float" Mode="In" />
+    <Parameter Name="Planet2posY" Type="float" Mode="In" />
+    <Parameter Name="Planet3posX" Type="float" Mode="In" />
+    <Parameter Name="Planet3posY" Type="float" Mode="In" />
+  </Function>
+  <Function Name="fn_GetPosition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPlanet" Type="int" Mode="In" />
+    <Parameter Name="DayP" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="PosX" Type="float" />
+          <Property Name="PosY" Type="float" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_GetRain" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Planet1posX" Type="float" Mode="In" />
+    <Parameter Name="Planet1posY" Type="float" Mode="In" />
+    <Parameter Name="Planet2posX" Type="float" Mode="In" />
+    <Parameter Name="Planet2posY" Type="float" Mode="In" />
+    <Parameter Name="Planet3posX" Type="float" Mode="In" />
+    <Parameter Name="Planet3posY" Type="float" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Cod" Type="varchar" MaxLength="3" />
+          <Property Name="Perimeter" Type="float" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_GetStraightLine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Planet1posX" Type="float" Mode="In" />
+    <Parameter Name="Planet1posY" Type="float" Mode="In" />
+    <Parameter Name="Planet2posX" Type="float" Mode="In" />
+    <Parameter Name="Planet2posY" Type="float" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="A" Type="float" />
+          <Property Name="B" Type="float" />
+          <Property Name="C" Type="float" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_GetWeatherDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DayP" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Cod" Type="varchar" MaxLength="3" />
+          <Property Name="Perimeter" Type="float" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="fn_GetWeatherDayWS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="DayP" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_IsInSameLine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+    <Parameter Name="A" Type="float" Mode="In" />
+    <Parameter Name="B" Type="float" Mode="In" />
+    <Parameter Name="C" Type="float" Mode="In" />
+    <Parameter Name="PlanetPosX" Type="float" Mode="In" />
+    <Parameter Name="PlanetPosY" Type="float" Mode="In" />
+  </Function>
+  <Function Name="fn_IsSunContained" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+    <Parameter Name="Planet1posX" Type="float" Mode="In" />
+    <Parameter Name="Planet1posY" Type="float" Mode="In" />
+    <Parameter Name="Planet2posX" Type="float" Mode="In" />
+    <Parameter Name="Planet2posY" Type="float" Mode="In" />
+    <Parameter Name="Planet3posX" Type="float" Mode="In" />
+    <Parameter Name="Planet3posY" Type="float" Mode="In" />
+  </Function>
+  <Function Name="fn_VerifyLine" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+    <Parameter Name="Planet1posX" Type="float" Mode="In" />
+    <Parameter Name="Planet1posY" Type="float" Mode="In" />
+    <Parameter Name="Planet2posX" Type="float" Mode="In" />
+    <Parameter Name="Planet2posY" Type="float" Mode="In" />
+    <Parameter Name="Planet3posX" Type="float" Mode="In" />
+    <Parameter Name="Planet3posY" Type="float" Mode="In" />
+  </Function>
+  <Function Name="usp_FillAllDays" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="resultP" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="usp_FillDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPlanet" Type="int" Mode="In" />
+    <Parameter Name="DayP" Type="int" Mode="In" />
+    <Parameter Name="resultPSetDay" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="usp_SetDayPos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IdPlanet" Type="int" Mode="In" />
+    <Parameter Name="DayP" Type="int" Mode="In" />
+    <Parameter Name="PosX" Type="float" Mode="In" />
+    <Parameter Name="PosY" Type="float" Mode="In" />
+    <Parameter Name="resultP" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <Function Name="usp_SetWeatherDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DayP" Type="int" Mode="In" />
+    <Parameter Name="IdPlanet1" Type="int" Mode="In" />
+    <Parameter Name="IdPlanet2" Type="int" Mode="In" />
+    <Parameter Name="IdPlanet3" Type="int" Mode="In" />
+    <Parameter Name="Cod" Type="varchar" Mode="In" />
+    <Parameter Name="Perimeter" Type="float" Mode="In" />
+    <Parameter Name="resultP" Type="varchar(max)" Mode="InOut" />
+  </Function>
+  <EntityContainer Name="tempModelStoreContainer">
+    <EntitySet Name="DayWeather" EntityType="Self.DayWeather" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PosPlanet" EntityType="Self.PosPlanet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WeatherCondition" EntityType="Self.WeatherCondition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Planet" EntityType="Self.Planet" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[Planet].[IdPlanet] AS [IdPlanet], 
+[Planet].[Radio] AS [Radio], 
+[Planet].[AngularVelocity] AS [AngularVelocity], 
+[Planet].[Name] AS [Name]
+FROM [dbo].[Planet] AS [Planet]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

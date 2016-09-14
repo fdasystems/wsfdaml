@@ -1,0 +1,58 @@
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\csc.exe
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\vbc.exe
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\VBCSCompiler.exe
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\WebAPI.dll.config
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\WebAPI.dll
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\WebAPI.pdb
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\Newtonsoft.Json.dll
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\System.Net.Http.Formatting.dll
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\System.Web.Http.dll
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\System.Web.Http.WebHost.dll
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\Newtonsoft.Json.xml
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\System.Net.Http.Formatting.xml
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\System.Web.Http.xml
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\bin\System.Web.Http.WebHost.xml
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\obj\Debug\WebAPI.csprojResolveAssemblyReference.cache
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\obj\Debug\WebAPI.dll
+C:\Users\fandrada\Desktop\fda\systems\TestML2016FDA\WebApiTESTFDAML\WebAPI\WebAPI\obj\Debug\WebAPI.pdb
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\csc.exe
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\System.Collections.Immutable.dll
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\System.Reflection.Metadata.dll
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\vbc.exe
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\VBCSCompiler.exe
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\roslyn\VBCSCompiler.exe.config
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\WebAPI.dll.config
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\WebAPI.dll
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\WebAPI.pdb
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\EntityFramework.dll
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\Newtonsoft.Json.dll
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\System.Net.Http.Formatting.dll
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\System.Web.Http.dll
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\System.Web.Http.WebHost.dll
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\EntityFramework.xml
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\Newtonsoft.Json.xml
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\System.Net.Http.Formatting.xml
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\System.Web.Http.xml
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\bin\System.Web.Http.WebHost.xml
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\obj\Debug\WebAPI.csprojResolveAssemblyReference.cache
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\obj\Debug\WebAPI.dll
+E:\FDA\Test Tecnicos - para ingresos laborales\Practicos\TestML2016\final\ws\WebApiTESTFDAML\WebAPI\WebAPI\obj\Debug\WebAPI.pdb
